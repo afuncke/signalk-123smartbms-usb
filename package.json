@@ -1,0 +1,21 @@
+{
+  "name": "signalk-123smartbms-usb",
+  "version": "0.0.1",
+  "description": "Simple Signal K Node server plugin to read data from 123SmartBMS over USB",
+  "main": "index.js",
+  "keywords": [
+    "signalk-node-server-plugin",
+    "123smartbms",
+    "usb",
+    "python"
+  ],
+  "author": "Alexander Funcke <funcke@0z.se>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "github:afuncke/signalk-123smartbms-usb"
+  },
+  "scripts": {
+    "preinstall": "python3 -m venv smartbms && smartbms/bin/python -m pip install wheel && smartbms/bin/python -m pip install -r requirements.txt"
+  }
+}

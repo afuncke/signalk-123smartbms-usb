@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "devices": {
+      "type": "array",
+      "title": "123/Smart BMS",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+	  "device"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Device ID in SignalK",
+            "default": "0"
+          },
+          "device": {
+            "type": "string",
+            "title": "Device File in System (e.g. /dev/ttyUSB0)",
+            "default": "0"
+          }
+        }
+      }
+    }
+  }
+}

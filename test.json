@@ -1,0 +1,8 @@
+{
+   "devices" : [
+      {
+         "id" : "arne",
+         "port" : "/dev/ttyUSB1"
+      }
+   ]
+}
