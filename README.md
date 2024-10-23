@@ -1,4 +1,4 @@
-# signalk-victron-ble
+# signalk-123smartbms-usb
 
 A SignalK plugin that reads 123/Smart BMS data over USB.
 
