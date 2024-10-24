@@ -24,35 +24,43 @@ async def monitor(config):
     for device in config["devices"]:
         bms = BMS(loop, device["port"])
         await bms.connect()
-        com = ComInstance(device["port"], device["id"], bms)
+        com = ComInstance(device["id"], device["port"], bms)
         instances.append(com)
 
     while True:
         for instance in instances:
             delta = {
-                "updates": {
+                "updates": [{
                     "source": {
                         "label": "123/Smart BMS",
                         "type": "USB",
                         "src": instance.port,
                     },
                     "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
-                    "values": {
-                        f"electrical.batteries.{instance.id}.voltage": str(instance.bms.pack_voltage),
-                        f"electrical.batteries.{instance.id}.voltage": str(instance.bms.pack_current),
-                        f"electrical.batteries.{instance.id}.stateOfCharge": str(instance.bms.soc),
-                        f"electrical.batteries.{instance.id}.lowestCellVoltage": str(instance.bms.lowest_cell_voltage),
-                        f"electrical.batteries.{instance.id}.highestCellVoltage": str(instance.bms.highest_cell_voltage),
-                        f"electrical.batteries.{instance.id}.allowedToCharge": str(int(instance.bms.allowed_to_charge)),
-                        f"electrical.batteries.{instance.id}.allowedToDischarge": str(int(instance.bms.allowed_to_discharge)),
-                        f"electrical.batteries.{instance.id}.communicationError": str(
+                    "values": [
+			{"path":
+                        f"electrical.batteries.{instance.id}.voltage", "value": str(instance.bms.pack_voltage)},
+			{"path":
+                        f"electrical.batteries.{instance.id}.voltage", "value": str(instance.bms.pack_current)},
+			{"path":
+                        f"electrical.batteries.{instance.id}.stateOfCharge", "value": str(instance.bms.soc)},
+			{"path":
+                        f"electrical.batteries.{instance.id}.lowestCellVoltage", "value": str(instance.bms.lowest_cell_voltage)},
+			{"path":
+                        f"electrical.batteries.{instance.id}.highestCellVoltage", "value": str(instance.bms.highest_cell_voltage)},
+			{"path":
+                        f"electrical.batteries.{instance.id}.allowedToCharge", "value": str(int(instance.bms.allowed_to_charge))},
+			{"path":
+                        f"electrical.batteries.{instance.id}.allowedToDischarge", "value": str(int(instance.bms.allowed_to_discharge))},
+			{"path":
+                        f"electrical.batteries.{instance.id}.communicationError", "value": str(
                             int(
                                 instance.bms.cell_communication_error
                                 or instance.bms.serial_communication_error
                             )
-                        ),
-                    },
-                }
+                        )},
+                    ],
+                }]
             }
 
             logger.info(delta)

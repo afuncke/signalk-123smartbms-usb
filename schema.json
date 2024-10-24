@@ -16,7 +16,7 @@
             "title": "Device ID in SignalK",
             "default": "0"
           },
-          "device": {
+          "port": {
             "type": "string",
             "title": "Device File in System (e.g. /dev/ttyUSB0)",
             "default": "0"
