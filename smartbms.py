@@ -41,7 +41,7 @@ async def monitor(config):
 			{"path":
                         f"electrical.batteries.{instance.id}.voltage", "value": str(instance.bms.pack_voltage)},
 			{"path":
-                        f"electrical.batteries.{instance.id}.voltage", "value": str(instance.bms.pack_current)},
+                        f"electrical.batteries.{instance.id}.current", "value": str(instance.bms.pack_current)},
 			{"path":
                         f"electrical.batteries.{instance.id}.stateOfCharge", "value": str(instance.bms.soc)},
 			{"path":
